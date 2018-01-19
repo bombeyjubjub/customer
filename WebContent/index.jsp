@@ -15,6 +15,7 @@
 		datacustomer();
 		initialDepartment();
 	});
+	
 	function initialDepartment(){
 		$.ajax({
 			type: "GET",
@@ -49,8 +50,7 @@
 		        });
 		        $('#datacustomer').append(trHTML);
 		    }
-		});
-		
+		});	
 	}
 	function saveUser(){
 		var obj = new Object();
@@ -61,7 +61,6 @@
 		obj.birthday = $("#birthday").val();
 		obj.departmentId = $("#department").val();
 		$("#success").html("Register Success");
-		
 		$.ajax({
 		type: "POST",
 		contentType : 'application/json',
@@ -77,9 +76,7 @@
 			$("#birthday").val("");
 			window.location.reload();
 		}
-		});
-		
-		
+		});	
 	}
 </script>
 <body>
@@ -136,9 +133,7 @@
 	  </form>
 	</div>    
     
-    
-	<div class="container">
-	           
+	<div class="container">        
 	  <table id="datacustomer" class="table table-hover">
 	    <thead>
 	      <tr>

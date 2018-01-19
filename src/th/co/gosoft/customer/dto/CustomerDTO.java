@@ -9,7 +9,14 @@ public class CustomerDTO {
     private String birthday;
     private int age;
     private int departmentId;
+    private String departmentName;
     
+	public String getDepartmentName() {
+		return departmentName;
+	}
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
 	public int getDepartmentId() {
 		return departmentId;
 	}

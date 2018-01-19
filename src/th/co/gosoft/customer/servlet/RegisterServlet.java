@@ -42,9 +42,6 @@ public class RegisterServlet extends HttpServlet {
     		CustomerService customerService = new CustomerService();
     		customerService.registerCustomer(registerCustomerModel);
 
-			//System.out.println(resultList.size());
-    		//System.out.println(resultList.get(1).getDepartment_id());
-			
             /*String complete = "Register Complete";
             request.setAttribute("complete", complete);*/
     		RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");

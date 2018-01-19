@@ -3,7 +3,10 @@ package th.co.gosoft.customer.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import th.co.gosoft.customer.dto.CustomerDTO;
 
@@ -51,5 +54,51 @@ public class CustomerDAO {
     				connect.close();
     			}
     		}
+	}
+	public List<CustomerDTO> selectAllCustomer() throws Exception {
+		List<CustomerDTO> resultList = new ArrayList<>();
+		Connection connect=null;
+		PreparedStatement preparedStatement = null;
+		ResultSet result = null;
+		
+	    try {
+	    	Class.forName("com.mysql.jdbc.Driver");
+
+    		connect =  DriverManager.getConnection("jdbc:mysql://localhost/gosoft" +
+    				"?user=root&password=12345678");
+    		
+	        String sql = "SELECT cus_name,cus_lastname,cus_username,cus_birthday,cus_age,department_name " + 
+	        		"FROM customer INNER JOIN department " + 
+	        		"ON customer.department_id = department.department_id";
+	        preparedStatement = connect.prepareStatement(sql);
+	        result = preparedStatement.executeQuery();
+
+	        while (result.next()) {
+	        	CustomerDTO customerDTO = new CustomerDTO();
+	        	customerDTO.setName(result.getString("cus_name"));
+	        	customerDTO.setLastname(result.getString("cus_lastname"));
+	        	customerDTO.setUsername(result.getString("cus_username"));
+	        	customerDTO.setBirthday(result.getString("cus_birthday"));
+	        	customerDTO.setAge(result.getInt("cus_age"));
+	        	customerDTO.setDepartmentName(result.getString("department_name"));
+
+	        	resultList.add(customerDTO);
+	        }
+	        return resultList;
+	    } catch (Exception e) {
+	        System.out.println(e);
+	        throw e;
+	    }finally {
+	    	if(result != null){
+	    		result.close();
+	    	}
+	    	if(preparedStatement != null) {
+	    		
+	    		preparedStatement.close();
+	    	}
+	    	if(connect != null) {
+	    		connect.close();
+	    	}
+	    }
 	}
 }

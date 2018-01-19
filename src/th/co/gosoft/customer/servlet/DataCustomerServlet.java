@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import th.co.gosoft.customer.dao.DataCustomerDAO;
-import th.co.gosoft.customer.dto.DataCustomerDTO;
+import th.co.gosoft.customer.dao.CustomerDAO;
+import th.co.gosoft.customer.dto.CustomerDTO;
 
 @WebServlet("/DataCustomerServlet")
 public class DataCustomerServlet extends HttpServlet {
@@ -23,10 +23,10 @@ public class DataCustomerServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataCustomerDAO dataCustomerDAO = new DataCustomerDAO();
-		List<DataCustomerDTO> resultList = null;
+		CustomerDAO CustomerDAO = new CustomerDAO();
+		List<CustomerDTO> resultList = null;
 		try {
-			resultList = dataCustomerDAO.selectAllCustomer();
+			resultList = CustomerDAO.selectAllCustomer();
 			Gson gson = new Gson();
 			String result = gson.toJson(resultList);	
 			response.setContentType("application/Json");
