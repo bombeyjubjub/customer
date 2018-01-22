@@ -59,7 +59,7 @@ public class CustomerDAO {
 		List<CustomerDTO> resultList = new ArrayList<>();
 		Connection connect=null;
 		PreparedStatement preparedStatement = null;
-		ResultSet result = null;
+		ResultSet resultSet = null;
 		
 	    try {
 	    	Class.forName("com.mysql.jdbc.Driver");
@@ -71,26 +71,25 @@ public class CustomerDAO {
 	        		"FROM customer INNER JOIN department " + 
 	        		"ON customer.department_id = department.department_id";
 	        preparedStatement = connect.prepareStatement(sql);
-	        result = preparedStatement.executeQuery();
+	        resultSet = preparedStatement.executeQuery();
 
-	        while (result.next()) {
+	        while (resultSet.next()) {
 	        	CustomerDTO customerDTO = new CustomerDTO();
-	        	customerDTO.setName(result.getString("cus_name"));
-	        	customerDTO.setLastname(result.getString("cus_lastname"));
-	        	customerDTO.setUsername(result.getString("cus_username"));
-	        	customerDTO.setBirthday(result.getString("cus_birthday"));
-	        	customerDTO.setAge(result.getInt("cus_age"));
-	        	customerDTO.setDepartmentName(result.getString("department_name"));
+	        	customerDTO.setName(resultSet.getString("cus_name"));
+	        	customerDTO.setLastname(resultSet.getString("cus_lastname"));
+	        	customerDTO.setUsername(resultSet.getString("cus_username"));
+	        	customerDTO.setBirthday(resultSet.getString("cus_birthday"));
+	        	customerDTO.setAge(resultSet.getInt("cus_age"));
+	        	customerDTO.setDepartmentName(resultSet.getString("department_name"));
 
 	        	resultList.add(customerDTO);
 	        }
 	        return resultList;
 	    } catch (Exception e) {
-	        System.out.println(e);
 	        throw e;
 	    }finally {
-	    	if(result != null){
-	    		result.close();
+	    	if(resultSet != null){
+	    		resultSet.close();
 	    	}
 	    	if(preparedStatement != null) {
 	    		

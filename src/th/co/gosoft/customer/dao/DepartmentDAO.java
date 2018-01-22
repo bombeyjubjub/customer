@@ -36,7 +36,6 @@ public class DepartmentDAO {
 	        }
 	        return resultList;
 	    } catch (Exception e) {
-	        System.out.println(e);
 	        throw e;
 	    }finally {
 	    	if(preparedStatement != null) {
@@ -46,11 +45,5 @@ public class DepartmentDAO {
 	    		connect.close();
 	    	}
 	    }	
-	}
-	public static void main(String[] args) throws Exception {
-		DepartmentDAO departmentDAO = new DepartmentDAO();
-		List<DepartmentDTO> resultList = departmentDAO.selectAllDepartment();
-		System.out.println(resultList.size());
-		System.out.println(resultList.get(2).getDepartment_name());
 	}
 }

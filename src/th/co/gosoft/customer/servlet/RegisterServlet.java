@@ -31,19 +31,10 @@ public class RegisterServlet extends HttpServlet {
 		BufferedReader reader = request.getReader();
 		Gson gson = new Gson();
 		RegisterCustomerModel registerCustomerModel = gson.fromJson(reader, RegisterCustomerModel.class);
-		
-//    		RegisterCustomerModel registerCustomerModel = new RegisterCustomerModel();
-//    		registerCustomerModel.setName(request.getParameter("name"));
-//    		registerCustomerModel.setLastname(request.getParameter("lastname"));
-//    		registerCustomerModel.setUsername(request.getParameter("username"));
-//    		registerCustomerModel.setPassword(request.getParameter("password"));
-//    		registerCustomerModel.setBirthday(request.getParameter("birthday"));
     		
     		CustomerService customerService = new CustomerService();
     		customerService.registerCustomer(registerCustomerModel);
 
-            /*String complete = "Register Complete";
-            request.setAttribute("complete", complete);*/
     		RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
             dispatcher.forward(request, response);    		
 	}

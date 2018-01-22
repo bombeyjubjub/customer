@@ -29,8 +29,6 @@ public class DepartmentServlet extends HttpServlet {
 			resultList = departmentDAO.selectAllDepartment();
 			Gson gson = new Gson();
 			String result = gson.toJson(resultList);	
-//			JsonElement element = gson.toJsonTree(resultList,new TypeToken<List<DepartmentDTO>>() {}.getType());
-//			JsonArray jsonArray = element.getAsJsonArray();
 			response.setContentType("application/Json");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().println(result);
@@ -41,19 +39,5 @@ public class DepartmentServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
-	}
-
-	public static void main(String[] args) {
-		DepartmentDAO departmentDAO = new DepartmentDAO();
-		List<DepartmentDTO> resultList = null;
-		try {
-			resultList = departmentDAO.selectAllDepartment();
-			Gson gson = new Gson();
-			String result = gson.toJson(resultList);
-			
-			System.out.println(result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }
