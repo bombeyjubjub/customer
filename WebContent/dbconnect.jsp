@@ -50,7 +50,6 @@
 	  	</table>      
 	    <%	
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			out.println(e.getMessage());
 			e.printStackTrace();
 		}
@@ -61,7 +60,6 @@
 				connect.close();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			out.println(e.getMessage());
 			e.printStackTrace();
 		}
